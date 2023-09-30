@@ -1,0 +1,12 @@
+Unity:
+
+1. movimentação do personagem
+2. ataque 
+3. spawn dos inimigos
+4. movimentação dos inimigos
+5. barra de vida
+6. redução do espaço pelas bordas
+7. melhoria de habilidades
+
+Pixel art:
+
