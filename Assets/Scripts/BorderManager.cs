@@ -15,6 +15,7 @@ public class BorderManager : MonoBehaviour
     [SerializeField] private Vector3 maxUpScale;
     [SerializeField] private Vector3 targetDownScale;
 
+    private SpawnEnemiesManager spawn;
     public static BorderManager instance;
 
     private void Awake()
@@ -24,6 +25,7 @@ public class BorderManager : MonoBehaviour
 
     private void Start()
     {
+        spawn = GetComponent<SpawnEnemiesManager>();
         targetDownScale = minimumScale * new Vector3(1, 1, 1);
         maxUpScale = maxScale * new Vector3(1, 1, 1);
     }
@@ -87,6 +89,19 @@ public class BorderManager : MonoBehaviour
         {
             collision.GetComponent<PlayerLife>().Die();
         }
+
+        Debug.Log(collision.tag);
+
+        if (collision.tag == "Spawn")
+        {
+            Debug.Log("Spawn colidiu");
+            spawn.HandleSpawn(collision.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.tag);
     }
 
 }
