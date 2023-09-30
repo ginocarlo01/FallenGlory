@@ -19,4 +19,6 @@ public class PlayerMovement : MonoBehaviour
         // Move o personagem
         transform.Translate(direcaoMovimento * speed * Time.deltaTime);
     }
+
+    
 }

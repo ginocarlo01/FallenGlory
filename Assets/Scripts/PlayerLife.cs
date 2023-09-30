@@ -30,4 +30,9 @@ public class PlayerLife : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void TakeDamage(int damage)
+    {
+
+    }
 }

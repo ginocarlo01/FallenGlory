@@ -5,8 +5,13 @@ using UnityEngine;
 public class SpawnEnemiesManager : MonoBehaviour
 {
     [SerializeField] private string SpawnTag;
+    [SerializeField] private float spawnInterval;
+    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] List<GameObject> spawnPoints;
-
+    private void Start()
+    {
+        InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+    }
     public void AddSpawnPoint(GameObject spawnPoint)
     {
         spawnPoints.Add(spawnPoint);
@@ -27,5 +32,20 @@ public class SpawnEnemiesManager : MonoBehaviour
         {
             AddSpawnPoint(spawnPoint);
         }
+    }
+
+    private void SpawnEnemy()
+    {
+        if (spawnPoints.Count == 0)
+        {
+            Debug.LogWarning("No spawn points defined!");
+            return;
+        }
+
+        // Choose a random spawn point from the array.
+        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)].transform;
+
+        // Instantiate the enemy at the chosen spawn point.
+        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
     }
 }

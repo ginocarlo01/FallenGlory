@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
     private GameObject player;
     [SerializeField] private float speed;
     [SerializeField] private float closeAttackDistance;
+    [SerializeField] private int damage;
 
     private void Start()
     {
@@ -39,5 +40,13 @@ public class EnemyMovement : MonoBehaviour
         Vector2 direction = (player.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerLife>().TakeDamage(damage);
+        }
     }
 }
