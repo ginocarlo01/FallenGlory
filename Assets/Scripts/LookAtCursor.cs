@@ -18,7 +18,5 @@ public class LookAtCursor : MonoBehaviour
 
         // Apply the rotation to the GameObject's local rotation.
         transform.rotation = rotation;
-
-        Debug.Log(rotation);
     }
 }

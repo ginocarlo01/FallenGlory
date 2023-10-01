@@ -42,13 +42,10 @@ public class ManaManager : MonoBehaviour
     private void RestartMana()
     {
         UIManager.instance.DisableMana();
-        Debug.Log("restart mana");
+        UIManager.instance.ShowUpgradeScreen();
+        PlayerAttack.instance.EnableSuperAttack();
         actualMana = 0;
 
     }
 
-    public void UpManaRate(float value)
-    {
-        upManaRate += value;
-    }
 }

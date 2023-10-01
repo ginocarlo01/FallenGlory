@@ -2,19 +2,17 @@ using UnityEngine;
 
 public class AttackObject : MonoBehaviour
 {
-    public float moveSpeed = 2.0f; // Adjust this to set the upward velocity
-    public float destroyTime = 5.0f; // Time in seconds before the object is destroyed
+    public float moveSpeed = 2.0f;
+    public float destroyTime = 5.0f;
     [SerializeField] private float damage;
 
     private void Start()
     {
-        // Start the destruction countdown
         Destroy(gameObject, destroyTime);
     }
 
     private void Update()
     {
-        // Move the object upwards
         transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
     }
 
@@ -23,8 +21,17 @@ public class AttackObject : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             collision.GetComponent<EnemyLife>().TakeDamage(damage);
-            //Debug.Log("Enemy hit");
         }
+    }
+
+    public void SetMoveSpeed(float value)
+    {
+        moveSpeed = value;
+    }
+
+    public void SetRange(float value)
+    {
+        destroyTime = value;
     }
 
 }

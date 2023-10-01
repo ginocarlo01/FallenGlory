@@ -11,6 +11,9 @@ public class UIManager : MonoBehaviour
     private Vector3 targetScaleHPv3, targetScaleManav3;
     public static UIManager instance;
 
+    [SerializeField] GameObject upgradeScreen;
+    [SerializeField] GameObject swordAttackImage, superAttackImage;
+
     private void Awake()
     {
         instance = this;
@@ -19,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-
+        HideUpgradeScreen();
         rectHP = HPBar.GetComponent<RectTransform>();
         rectMana = ManaBar.GetComponent<RectTransform>();
         targetScaleHPv3 = rectHP.localScale;
@@ -55,6 +58,47 @@ public class UIManager : MonoBehaviour
 
     public void BtnUpMana()
     {
-        ManaManager.instance.UpManaRate(0.15f);
+        ManaManager.instance.UpMana(5f);
+        HideUpgradeScreen();
+    }
+
+    public void BtnUpHP()
+    {
+        PlayerLife.instance.UpLife(5);
+        HideUpgradeScreen();
+    }
+
+    public void BtnUpAttackSpeed()
+    {
+        PlayerAttack.instance.SetWeaponSpeed(1f);
+        HideUpgradeScreen();
+    }
+
+    public void BtnUpAttackRange()
+    {
+        PlayerAttack.instance.SetWeaponRange(1f);
+        HideUpgradeScreen();
+    }
+
+    public void ShowUpgradeScreen()
+    {
+        upgradeScreen.SetActive(true);
+        Time.timeScale = 0.0f;
+    }
+
+    public void HideUpgradeScreen()
+    {
+        upgradeScreen.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+
+    public void SetAttackImage(bool state)
+    {
+        swordAttackImage.SetActive(state);
+    }
+
+    public void SetSuperAttackImage(bool state)
+    {
+        superAttackImage.SetActive(state);
     }
 }

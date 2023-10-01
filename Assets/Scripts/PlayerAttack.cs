@@ -7,12 +7,19 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private float meeleeSpeed;
     
-    [SerializeField] private bool attackBlocked;
+    [SerializeField] private bool attackBlocked, canSuperAttack;
     [SerializeField] private float delay;
 
-    [SerializeField] private GameObject attackObject;
+    [SerializeField] private GameObject attackObject, superAttackObject;
 
-    float timeUntilMeelee;
+    [SerializeField] private float weaponSpeed, weaponRange;
+
+    public static PlayerAttack instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -25,22 +32,35 @@ public class PlayerAttack : MonoBehaviour
         {
             Attack();
         }
-            
-        /*if (timeUntilMeelee <= 0f)
+        if (Input.GetKeyDown(KeyCode.Space) && canSuperAttack)
         {
-            if (Input.GetMouseButton(0))
-            {
-                anim.SetTrigger("Attack");
-                timeUntilMeelee = meeleeSpeed;
-            }
+            SuperAttack();
         }
-        else
-        {
-            timeUntilMeelee -= Time.deltaTime;
-        }*/
+
+        UIManager.instance.SetSuperAttackImage(canSuperAttack);
+
+
+            /*if (timeUntilMeelee <= 0f)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    anim.SetTrigger("Attack");
+                    timeUntilMeelee = meeleeSpeed;
+                }
+            }
+            else
+            {
+                timeUntilMeelee -= Time.deltaTime;
+            }*/
+
+        UIManager.instance.SetAttackImage(!attackBlocked);
     }
 
-    
+    private void SuperAttack()
+    {
+        Instantiate(superAttackObject, transform.position, transform.rotation);
+        DisableSuperAttack();
+    }
 
     private void Attack()
     {
@@ -62,20 +82,38 @@ public class PlayerAttack : MonoBehaviour
 
     private void SpawnAttackObject()
     {
-        // Get the mouse cursor's position in the world space
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0; // Ensure the z-coordinate is appropriate for your game
+        mousePosition.z = 0; 
 
-        // Calculate the direction from the object to the mouse cursor
         Vector3 direction = (mousePosition - transform.position).normalized;
 
-        // Calculate the rotation angle in radians with a 90-degree adjustment
         float angle = Mathf.Atan2(direction.y, direction.x) - Mathf.PI / 2f;
 
-        // Convert the angle to degrees and create a rotation quaternion
         Quaternion rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
 
-        // Instantiate the object at the current position with the calculated rotation
         Instantiate(attackObject, transform.position, rotation);
+
+        attackObject.GetComponent<AttackObject>().SetMoveSpeed(weaponSpeed);
+        attackObject.GetComponent<AttackObject>().SetRange(weaponRange);
+    }
+
+    public void SetWeaponSpeed(float value)
+    {
+        weaponSpeed += value;
+    }
+
+    public void SetWeaponRange(float value)
+    {
+        weaponRange += value;
+    }
+
+    public void EnableSuperAttack()
+    {
+        canSuperAttack = true;
+    }
+
+    private void DisableSuperAttack()
+    {
+        canSuperAttack = false;
     }
 }

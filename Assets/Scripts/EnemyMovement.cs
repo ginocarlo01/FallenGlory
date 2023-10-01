@@ -5,12 +5,15 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private GameObject player;
+    private SpriteRenderer sprite;
+
     [SerializeField] private float speed;
     [SerializeField] private float closeAttackDistance;
     
 
     private void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
        player = GameObject.FindWithTag("Player");
     }
 
@@ -19,8 +22,9 @@ public class EnemyMovement : MonoBehaviour
         if(CalculateDistance() > closeAttackDistance)
         {
             MoveEnemy();
-            //RotateEnemy();
+            
         }
+        LookAtPlayer();
         
     }
 
@@ -33,6 +37,22 @@ public class EnemyMovement : MonoBehaviour
     private void MoveEnemy()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+    }
+
+    private void LookAtPlayer()
+    {
+        Vector3 enemyPos = transform.position;
+        Vector3 playerPos = player.transform.position;
+
+        if(enemyPos.x < playerPos.x)
+        {
+            sprite.flipX = false;
+        }
+
+        else
+        {
+            sprite.flipX = true;
+        }
     }
 
     private void RotateEnemy()

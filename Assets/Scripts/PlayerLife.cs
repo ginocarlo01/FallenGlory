@@ -19,7 +19,6 @@ public class PlayerLife : MonoBehaviour
     private void Start()
     {
         life = maxLife;
-        Debug.Log(life);
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -44,12 +43,7 @@ public class PlayerLife : MonoBehaviour
     public void TakeDamage(int damage)
     {
         life -= damage;
-        Debug.Log("damage: " + damage);
-
-        float partialLife = life / maxLife;
-
-        UIManager.instance.UpdateHP(partialLife);
-
+        UpdateUI();
         HandleDeath();
     }
 
@@ -65,5 +59,14 @@ public class PlayerLife : MonoBehaviour
     public void UpLife(float value)
     {
         life += value;
+        UpdateUI();
     }
+
+    private void UpdateUI()
+    {
+        float partialLife = life / maxLife;
+
+        UIManager.instance.UpdateHP(partialLife);
+    }
+
 }

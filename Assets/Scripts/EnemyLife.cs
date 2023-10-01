@@ -49,7 +49,7 @@ public class EnemyLife : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         Destroy(this.gameObject);
         UpBorder();

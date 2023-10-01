@@ -90,6 +90,11 @@ public class BorderManager : MonoBehaviour
             collision.GetComponent<PlayerLife>().Die();
         }
 
+        if (collision.tag == "Enemy")
+        {
+            collision.GetComponent<EnemyLife>().Die();
+        }
+
         if (collision.tag == "Spawn")
         {
             spawn.HandleSpawn(collision.gameObject);
@@ -99,6 +104,11 @@ public class BorderManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(collision.gameObject.tag);
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
 }
