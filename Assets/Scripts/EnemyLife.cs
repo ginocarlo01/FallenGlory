@@ -4,17 +4,44 @@ using UnityEngine;
 
 public class EnemyLife : MonoBehaviour
 {
-    [SerializeField] private float health;
-    [SerializeField] private float upScale;
+    private float health;
+    private float upBorderScale;
+
+    [SerializeField] private float maxUpBorderScale;
+    [SerializeField] private float minUpBorderScale;
+
+    [SerializeField] private float maxRandomHealth;
+    [SerializeField] private float minRandomHealth;
+
+    private void Start()
+    {
+        InitializeEnemy();
+    }
+
+    private void InitializeEnemy()
+    {
+        GenerateHealth();
+        GenerateUpScale();
+    }
+
+    private void GenerateHealth()
+    {
+        health = Random.Range(minRandomHealth, maxRandomHealth);
+    }
+
+    private void GenerateUpScale()
+    {
+        upBorderScale = Random.Range(minUpBorderScale, maxUpBorderScale);
+    }
 
     public void TakeDamage(float damage)
     {
         health -= damage;
 
-        HandleLife();
+        HandleDeath();
     }
 
-    private void HandleLife()
+    private void HandleDeath()
     {
         if (health <= 0f)
         {
@@ -30,6 +57,6 @@ public class EnemyLife : MonoBehaviour
 
     private void UpBorder()
     {
-        BorderManager.instance.ScaleUpCircle(upScale);
+        BorderManager.instance.ScaleUpCircle(upBorderScale);
     }
 }

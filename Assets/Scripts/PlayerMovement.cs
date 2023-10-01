@@ -2,23 +2,35 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed = 5.0f;
+    [SerializeField] private float speed = 5.0f;
+
+    private Rigidbody2D rb;
+
+    private float horizontalInput, verticalInput;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
-        // Obtém a entrada do jogador
-        float movimentoHorizontal = Input.GetAxis("Horizontal");
-        float movimentoVertical = Input.GetAxis("Vertical");
-
-        // Calcula a direção de movimento
-        Vector3 direcaoMovimento = new Vector3(movimentoHorizontal, movimentoVertical, 0);
-
-        // Normaliza a direção para evitar movimento mais rápido na diagonal
-        direcaoMovimento.Normalize();
-
-        // Move o personagem
-        transform.Translate(direcaoMovimento * speed * Time.deltaTime);
+        ReadInput();
+        MovePlayer();
     }
 
-    
+    private void ReadInput()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+    }
+
+    private void MovePlayer()
+    {
+        Vector2 movement = new Vector2(horizontalInput, verticalInput);
+
+        movement.Normalize();
+
+        rb.velocity = movement * speed;
+    }
 }

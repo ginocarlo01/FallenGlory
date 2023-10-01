@@ -6,12 +6,13 @@ public class SpawnEnemiesManager : MonoBehaviour
 {
     [SerializeField] private string SpawnTag;
     [SerializeField] private float spawnInterval;
-    [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] List<GameObject> spawnPoints;
+    [SerializeField] private List<GameObject> enemyPrefabs;
+    [SerializeField] private List<GameObject> spawnPoints;
     private void Start()
     {
-        InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+        InvokeRepeating("SpawnEnemy", 1f, spawnInterval);
     }
+
     public void AddSpawnPoint(GameObject spawnPoint)
     {
         spawnPoints.Add(spawnPoint);
@@ -42,10 +43,8 @@ public class SpawnEnemiesManager : MonoBehaviour
             return;
         }
 
-        // Choose a random spawn point from the array.
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)].transform;
-
-        // Instantiate the enemy at the chosen spawn point.
-        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+        GameObject enemyChosen = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+        Instantiate(enemyChosen, spawnPoint.position, Quaternion.identity);
     }
 }

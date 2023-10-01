@@ -90,11 +90,8 @@ public class BorderManager : MonoBehaviour
             collision.GetComponent<PlayerLife>().Die();
         }
 
-        Debug.Log(collision.tag);
-
         if (collision.tag == "Spawn")
         {
-            Debug.Log("Spawn colidiu");
             spawn.HandleSpawn(collision.gameObject);
         }
     }

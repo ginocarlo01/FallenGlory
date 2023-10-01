@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     private GameObject player;
     [SerializeField] private float speed;
     [SerializeField] private float closeAttackDistance;
-    [SerializeField] private int damage;
+    
 
     private void Start()
     {
@@ -37,16 +37,27 @@ public class EnemyMovement : MonoBehaviour
 
     private void RotateEnemy()
     {
-        Vector2 direction = (player.transform.position - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+        Vector3 dir = player.transform.position - transform.position;
+
+        // Calculate the angle (in degrees) from the direction vector.
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        // Calculate the dot product to determine if character is on the left or right side.
+        float dot = Vector3.Dot(transform.right, dir.normalized);
+
+        // Flip the angle if the character is on the left side.
+        if (dot < 0.0f)
+        {
+            angle += 180.0f;
+        }
+
+        // Clamp the angle to ensure it doesn't exceed the specified range.
+        angle = Mathf.Clamp(angle, -90, 90);
+
+        // Apply the rotation only to the Z-axis (around the forward vector).
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            collision.gameObject.GetComponent<PlayerLife>().TakeDamage(damage);
-        }
-    }
+
 }
