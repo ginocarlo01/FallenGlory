@@ -53,6 +53,7 @@ public class EnemyLife : MonoBehaviour
     {
         Destroy(this.gameObject);
         UpBorder();
+        ManaManager.instance.UpMana(1); ;
     }
 
     private void UpBorder()
