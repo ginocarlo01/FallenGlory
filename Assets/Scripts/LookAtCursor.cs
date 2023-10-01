@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LookAtCursor : MonoBehaviour
@@ -7,11 +5,20 @@ public class LookAtCursor : MonoBehaviour
     void Update()
     {
         Vector3 mousePosition = Input.mousePosition;
-
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+        // Calculate the direction vector in local space.
+        Vector3 direction = mousePosition - transform.parent.position;
 
-        transform.up = direction;
+        // Calculate the angle in degrees.
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Create a quaternion rotation using the calculated angle.
+        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        // Apply the rotation to the GameObject's local rotation.
+        transform.rotation = rotation;
+
+        Debug.Log(rotation);
     }
 }

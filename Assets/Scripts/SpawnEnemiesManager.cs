@@ -45,6 +45,6 @@ public class SpawnEnemiesManager : MonoBehaviour
 
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)].transform;
         GameObject enemyChosen = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
-        Instantiate(enemyChosen, spawnPoint.position, Quaternion.identity);
+        spawnPoint.GetComponent<SpawnPoint>().StartSpawn(enemyChosen);
     }
 }
