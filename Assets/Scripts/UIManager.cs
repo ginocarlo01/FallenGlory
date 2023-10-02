@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject upgradeScreen;
     [SerializeField] GameObject startScreen;
+    [SerializeField] GameObject deathScreen;
     [SerializeField] GameObject instructions;
     [SerializeField] GameObject swordAttackImage, superAttackImage;
     [SerializeField] TextMeshProUGUI killedEnemiesTxt;
@@ -29,6 +31,7 @@ public class UIManager : MonoBehaviour
         HideUpgradeScreen();
         HideStartScreen();
         HideInstructions();
+        HideDeathUI();
         rectHP = HPBar.GetComponent<RectTransform>();
         rectMana = ManaBar.GetComponent<RectTransform>();
         targetScaleHPv3 = rectHP.localScale;
@@ -145,6 +148,27 @@ public class UIManager : MonoBehaviour
     public void HideInstructions()
     {
         instructions.SetActive(false);
+    }
+
+    public void ShowDeathUI()
+    {
+        deathScreen.SetActive(true);
+    }
+
+    public void HideDeathUI()
+    {
+        deathScreen.SetActive(false);
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("replay");
+        HideDeathUI();
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
 }

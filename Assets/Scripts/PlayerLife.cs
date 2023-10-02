@@ -25,20 +25,21 @@ public class PlayerLife : MonoBehaviour
     public void Die()
     {
         rb.bodyType = RigidbodyType2D.Static;
-        StartCoroutine(DeathDelay());
+        Time.timeScale = 0;
+        UIManager.instance.ShowDeathUI();
+
+
+        //StartCoroutine(DeathDelay());
     }
 
     private IEnumerator DeathDelay()
     {
-        yield return new WaitForSeconds(waitToDeathTime); 
+        yield return new WaitForSeconds(waitToDeathTime);
 
-        RestartScene();
+        
     }
 
-    private void RestartScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    
 
     public void TakeDamage(int damage)
     {

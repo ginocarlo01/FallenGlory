@@ -16,6 +16,8 @@ public class PlayerAttack : MonoBehaviour
 
     public static PlayerAttack instance;
 
+    private Animator anim;
+
     private void Awake()
     {
         instance = this;
@@ -23,7 +25,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -68,6 +70,7 @@ public class PlayerAttack : MonoBehaviour
         {
             return;
         }
+        anim.SetTrigger("Attack");
         SpawnAttackObject();
         attackBlocked = true;
         StartCoroutine(DelayAttack());

@@ -108,6 +108,11 @@ public class BorderManager : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerLife>().Die();
+        }
     }
 
 }
