@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject upgradeScreen;
     [SerializeField] GameObject startScreen;
     [SerializeField] GameObject deathScreen;
+    [SerializeField] GameObject initScreen;
     [SerializeField] GameObject instructions;
     [SerializeField] GameObject swordAttackImage, superAttackImage;
     [SerializeField] TextMeshProUGUI killedEnemiesTxt;
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        ShowInitScreen();
         HideUpgradeScreen();
         HideStartScreen();
         HideInstructions();
@@ -36,6 +38,7 @@ public class UIManager : MonoBehaviour
         rectMana = ManaBar.GetComponent<RectTransform>();
         targetScaleHPv3 = rectHP.localScale;
         targetScaleManav3 = rectMana.localScale;
+        Time.timeScale = 0.0f;
 
     }
 
@@ -169,6 +172,23 @@ public class UIManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void StartGame()
+    {
+        HideInitScreen();
+        Time.timeScale = 1.0f;
+
+    }
+
+    public void HideInitScreen()
+    {
+        initScreen.SetActive(false);
+    }
+
+    public void ShowInitScreen()
+    {
+        initScreen.SetActive(true);
     }
 
 }

@@ -60,6 +60,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void SuperAttack()
     {
+        SFXManager.instance.PlaySound(2);
         Instantiate(superAttackObject, transform.position, transform.rotation);
         DisableSuperAttack();
     }
@@ -70,6 +71,7 @@ public class PlayerAttack : MonoBehaviour
         {
             return;
         }
+        SFXManager.instance.PlaySound(1);
         anim.SetTrigger("Attack");
         SpawnAttackObject();
         attackBlocked = true;

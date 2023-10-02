@@ -41,6 +41,7 @@ public class ManaManager : MonoBehaviour
 
     private void RestartMana()
     {
+        SFXManager.instance.PlaySound(5);
         UIManager.instance.DisableMana();
         UIManager.instance.ShowUpgradeScreen();
         PlayerAttack.instance.EnableSuperAttack();
