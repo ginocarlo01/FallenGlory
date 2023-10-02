@@ -1697,7 +1697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b6f5fb102c8c744abe64dae0685c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reduceSpeed: 0.2
+  reduceSpeed: 0.1
   upSpeed: 0.4
   isGrowing: 0
   targetUpScale: {x: 0, y: 0, z: 0}
@@ -1732,6 +1732,9 @@ MonoBehaviour:
   - {fileID: 884947642}
   - {fileID: 931800115}
   - {fileID: 362021384}
+  spawnTimerDecreaseRate: 0.02
+  minSpawnTimer: 1
+  enemiesKilled: 0
 --- !u!60 &744955852
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -40176,8 +40179,9 @@ GameObject:
   - component: {fileID: 1334972603}
   - component: {fileID: 1334972602}
   - component: {fileID: 1334972604}
+  - component: {fileID: 1334972605}
   m_Layer: 0
-  m_Name: UIManager
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40231,6 +40235,19 @@ MonoBehaviour:
   maxMana: 20
   actualMana: 0
   upManaRate: 0.6
+--- !u!114 &1334972605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334972601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461a542d64eeb0240a3c2d7304724073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemiesKilled: 0
 --- !u!1 &1345098953
 GameObject:
   m_ObjectHideFlags: 0

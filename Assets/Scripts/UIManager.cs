@@ -70,13 +70,13 @@ public class UIManager : MonoBehaviour
 
     public void BtnUpAttackSpeed()
     {
-        PlayerAttack.instance.SetWeaponSpeed(1f);
+        PlayerAttack.instance.SetWeaponSpeed(2f);
         HideUpgradeScreen();
     }
 
     public void BtnUpAttackRange()
     {
-        PlayerAttack.instance.SetWeaponRange(1f);
+        PlayerAttack.instance.SetWeaponRange(2f);
         HideUpgradeScreen();
     }
 

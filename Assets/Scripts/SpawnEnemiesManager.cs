@@ -8,9 +8,17 @@ public class SpawnEnemiesManager : MonoBehaviour
     [SerializeField] private float spawnInterval;
     [SerializeField] private List<GameObject> enemyPrefabs;
     [SerializeField] private List<GameObject> spawnPoints;
+    [SerializeField] private float spawnTimerDecreaseRate = 0.02f;
+    [SerializeField] private float minSpawnTimer = 1.0f;
+    [SerializeField] private int enemiesKilled, localEnemyCount;
     private void Start()
     {
         InvokeRepeating("SpawnEnemy", 1f, spawnInterval);
+    }
+
+    private void Update()
+    {
+        CheckEnemiesKilled();
     }
 
     public void AddSpawnPoint(GameObject spawnPoint)
@@ -46,5 +54,27 @@ public class SpawnEnemiesManager : MonoBehaviour
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)].transform;
         GameObject enemyChosen = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
         spawnPoint.GetComponent<SpawnPoint>().StartSpawn(enemyChosen);
+    }
+
+   public void UpdateTimer()
+    {
+        if (spawnInterval > minSpawnTimer)
+        {
+            int numberOfEnemiesKilled = EnemyKillManager.instance.GetEnemyCount();
+            spawnInterval -= numberOfEnemiesKilled * spawnTimerDecreaseRate;
+        }
+    }
+
+    private void CheckEnemiesKilled()
+    {
+        localEnemyCount = EnemyKillManager.instance.GetEnemyCount();
+
+        if(localEnemyCount != enemiesKilled)
+        {
+            
+            UpdateTimer();
+            enemiesKilled = localEnemyCount;
+        }
+
     }
 }

@@ -103,8 +103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxUpBorderScale: 0.1
   minUpBorderScale: 0.3
-  maxRandomHealth: 1
-  minRandomHealth: 6
+  maxRandomHealth: 5
+  minRandomHealth: 12
+  timeToShowDamage: 1
 --- !u!212 &2879573795831324492
 SpriteRenderer:
   m_ObjectHideFlags: 0

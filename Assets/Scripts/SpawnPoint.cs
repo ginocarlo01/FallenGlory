@@ -11,7 +11,7 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] private float timeToStartSpawn = 1f;
 
     private Color startColor;
-    private float transitionTimer, trasistionUnshowTimer;
+    private float transitionTimer;
     private Color targetColor;
     private GameObject enemyChosen;
 
