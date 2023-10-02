@@ -95,7 +95,7 @@ public class UIManager : MonoBehaviour
 
     public void BtnUpAttackRange()
     {
-        PlayerAttack.instance.SetWeaponRange(2f);
+        PlayerAttack.instance.SetWeaponRange(.5f);
         HideUpgradeScreen();
     }
 

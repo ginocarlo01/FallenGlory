@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyLife : MonoBehaviour
 {
-    private float health;
+    [SerializeField] private float health;
     private float upBorderScale;
 
     [SerializeField] private float maxUpBorderScale;
@@ -37,12 +37,15 @@ public class EnemyLife : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         startColor = sprite.color;
         targetColor = new Color(startColor.r, startColor.g, startColor.b, transparencyDamaged * startColor.a);
+        maxRandomHealth = SpawnEnemiesManager.instance.GetMaxEnemyRandomLife();
+        
         GenerateHealth();
         GenerateUpScale();
     }
 
     private void GenerateHealth()
     {
+        
         health = Random.Range(minRandomHealth, maxRandomHealth);
     }
 

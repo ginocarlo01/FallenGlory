@@ -101,10 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d403b83475f7341915bc9329507ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   maxUpBorderScale: 0.1
   minUpBorderScale: 0.3
   maxRandomHealth: 5
-  minRandomHealth: 12
+  minRandomHealth: 1
   timeToShowDamage: 1
   transparencyDamaged: 0.65
 --- !u!212 &2879573795831324492

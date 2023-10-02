@@ -2018,6 +2018,10 @@ MonoBehaviour:
   - {fileID: 362021384}
   spawnTimerDecreaseRate: 0.006
   minSpawnTimer: 1
+  maxEnemyLifeOnSpawn: 3
+  maxEnemyLife: 20
+  enemyLifeUpRate: 25
+  enemyLifeSpawnUpRate: 2
   enemiesKilled: 0
   localEnemyCount: 0
 --- !u!60 &744955852
@@ -3648,14 +3652,6 @@ PrefabInstance:
     - target: {fileID: 1287878995638795834, guid: b0e55277858c46248921ba8bcb1a6d0d, type: 3}
       propertyPath: m_Name
       value: Spawn (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1287878995638795839, guid: b0e55277858c46248921ba8bcb1a6d0d, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 9f3a2b0df224a7a48acbd12902dcb6b6, type: 3}
-    - target: {fileID: 1287878995638795839, guid: b0e55277858c46248921ba8bcb1a6d0d, type: 3}
-      propertyPath: m_Color.a
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0e55277858c46248921ba8bcb1a6d0d, type: 3}
@@ -41628,7 +41624,7 @@ RectTransform:
   m_GameObject: {fileID: 1610535135}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.37495998, y: 1, z: 1}
+  m_LocalScale: {x: 0.470295, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 482107862}
@@ -42759,14 +42755,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba737cdfede8b24988c76eb256629c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meeleeSpeed: 1
   attackBlocked: 0
   canSuperAttack: 0
-  delay: 2
+  delay: 1.7
   attackObject: {fileID: 2507833394170148909, guid: a7c5f14633d8ee64f81153144c0c031b, type: 3}
   superAttackObject: {fileID: 7457034201066641223, guid: 43df3db11adc9a142883a5fc6e8981e9, type: 3}
-  weaponSpeed: 4
-  weaponRange: 2
+  weaponSpeed: 6.5
+  weaponRange: 0.5
   weaponDamage: 5
 --- !u!95 &8821753600379175995
 Animator:

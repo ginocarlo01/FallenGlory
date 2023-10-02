@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
 
-    [SerializeField] private float meeleeSpeed;
+    //[SerializeField] private float meeleeSpeed;
     
     [SerializeField] private bool attackBlocked, canSuperAttack;
     [SerializeField] private float delay;

@@ -9,8 +9,17 @@ public class SpawnEnemiesManager : MonoBehaviour
     [SerializeField] private List<GameObject> enemyPrefabs;
     [SerializeField] private List<GameObject> spawnPoints;
     [SerializeField] private float spawnTimerDecreaseRate = 0.02f;
-    [SerializeField] private float minSpawnTimer = 1.0f;
-    [SerializeField] private int enemiesKilled, localEnemyCount;
+    [SerializeField] private float minSpawnTimer = 1.0f, maxEnemyLifeOnSpawn = 3, maxEnemyLife = 20, enemyLifeUpRate = 25, enemyLifeSpawnUpRate = 2;
+    private bool alreadyUpgradedMaxLife;
+    [SerializeField] private float enemiesKilled, localEnemyCount;
+
+    public static SpawnEnemiesManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         InvokeRepeating("SpawnEnemy", 1f, spawnInterval);
@@ -65,16 +74,30 @@ public class SpawnEnemiesManager : MonoBehaviour
         }
     }
 
+    public void UpdateMaxEnemyLife()
+    {
+        if(maxEnemyLifeOnSpawn < maxEnemyLife && EnemyKillManager.instance.GetEnemyCount() % enemyLifeUpRate == 0)
+        {
+            Debug.Log(EnemyKillManager.instance.GetEnemyCount() % enemyLifeUpRate);
+            maxEnemyLifeOnSpawn += enemyLifeSpawnUpRate;
+        }
+    }
+
     private void CheckEnemiesKilled()
     {
         localEnemyCount = EnemyKillManager.instance.GetEnemyCount();
 
-        if(localEnemyCount != enemiesKilled)
+        if (localEnemyCount != enemiesKilled)
         {
-            
             UpdateTimer();
             enemiesKilled = localEnemyCount;
         }
 
+    }
+
+    public float GetMaxEnemyRandomLife()
+    {
+        Debug.Log("Max life: " + maxEnemyLifeOnSpawn);
+        return maxEnemyLifeOnSpawn;
     }
 }

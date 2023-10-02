@@ -16,6 +16,7 @@ public class EnemyKillManager : MonoBehaviour
     public void KilledEnemy()
     {
         enemiesKilled++;
+        SpawnEnemiesManager.instance.UpdateMaxEnemyLife();
     }
 
     public int GetEnemyCount()

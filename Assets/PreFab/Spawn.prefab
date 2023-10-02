@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a20db420a8a5d42a09c4d9172fe40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToStartSpawn: 1
+  timeToStartSpawn: 1.5
 --- !u!50 &1287878995638795838
 Rigidbody2D:
   serializedVersion: 4
