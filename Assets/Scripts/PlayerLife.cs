@@ -25,6 +25,7 @@ public class PlayerLife : MonoBehaviour
     public void Die()
     {
         rb.bodyType = RigidbodyType2D.Static;
+        SFXManager.instance.StopLevelMusic();
         Time.timeScale = 0;
         UIManager.instance.ShowDeathUI();
 

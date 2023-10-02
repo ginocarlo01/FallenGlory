@@ -4,7 +4,7 @@ public class SFXManager : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip[] soundClips;
-    public AudioSource bgMusic;
+    public AudioSource bgMusic, levelMusic;
     public static SFXManager instance;
 
     private void Awake()
@@ -14,6 +14,7 @@ public class SFXManager : MonoBehaviour
 
     private void Start()
     {
+        levelMusic.loop = true;
         // Ensure we have a reference to the AudioSource component on this GameObject
         if (audioSource == null)
         {
@@ -46,11 +47,11 @@ public class SFXManager : MonoBehaviour
 
     public void StartLevelMusic()
     {
-
+        levelMusic.Play();
     }
 
     public void StopLevelMusic()
     {
-
+        levelMusic.Stop();
     }
 }

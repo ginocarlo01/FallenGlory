@@ -178,12 +178,14 @@ public class UIManager : MonoBehaviour
     {
         HideInitScreen();
         Time.timeScale = 1.0f;
+        SFXManager.instance.StartLevelMusic();
 
     }
 
     public void HideInitScreen()
     {
         initScreen.SetActive(false);
+        SFXManager.instance.StopBGMusic();
     }
 
     public void ShowInitScreen()
