@@ -12,7 +12,7 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private GameObject attackObject, superAttackObject;
 
-    [SerializeField] private float weaponSpeed, weaponRange;
+    [SerializeField] private float weaponSpeed, weaponRange, weaponDamage;
 
     public static PlayerAttack instance;
 
@@ -95,6 +95,7 @@ public class PlayerAttack : MonoBehaviour
 
         attackObject.GetComponent<AttackObject>().SetMoveSpeed(weaponSpeed);
         attackObject.GetComponent<AttackObject>().SetRange(weaponRange);
+        attackObject.GetComponent<AttackObject>().SetDamage(weaponDamage);
     }
 
     public void SetWeaponSpeed(float value)
@@ -105,6 +106,11 @@ public class PlayerAttack : MonoBehaviour
     public void SetWeaponRange(float value)
     {
         weaponRange += value;
+    }
+
+    public void SetWeaponDamage(float value)
+    {
+        weaponDamage += value;
     }
 
     public void EnableSuperAttack()

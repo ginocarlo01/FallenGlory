@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [SerializeField] GameObject upgradeScreen;
+    [SerializeField] GameObject startScreen;
+    [SerializeField] GameObject instructions;
     [SerializeField] GameObject swordAttackImage, superAttackImage;
+    [SerializeField] TextMeshProUGUI killedEnemiesTxt;
 
     private void Awake()
     {
@@ -23,6 +27,8 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         HideUpgradeScreen();
+        HideStartScreen();
+        HideInstructions();
         rectHP = HPBar.GetComponent<RectTransform>();
         rectMana = ManaBar.GetComponent<RectTransform>();
         targetScaleHPv3 = rectHP.localScale;
@@ -34,6 +40,12 @@ public class UIManager : MonoBehaviour
     {
         rectHP.localScale = Vector3.Lerp(rectHP.localScale, targetScaleHPv3, scaleSpeed * Time.deltaTime);
         rectMana.localScale = Vector3.Lerp(rectMana.localScale, targetScaleManav3, scaleSpeed * Time.deltaTime);
+        updateKilledEnemies();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ShowStartScreen();
+        }
     }
 
     public void UpdateHP(float newHp)
@@ -65,6 +77,13 @@ public class UIManager : MonoBehaviour
     public void BtnUpHP()
     {
         PlayerLife.instance.UpLife(5);
+        HideUpgradeScreen();
+    }
+
+
+    public void BtnUpAttackWeapon()
+    {
+        PlayerAttack.instance.SetWeaponDamage(2f);
         HideUpgradeScreen();
     }
 
@@ -101,4 +120,31 @@ public class UIManager : MonoBehaviour
     {
         superAttackImage.SetActive(state);
     }
+
+    private void updateKilledEnemies()
+    {
+        killedEnemiesTxt.text = EnemyKillManager.instance.GetEnemyCount().ToString();
+    }
+
+    public void ShowStartScreen()
+    {
+        startScreen.SetActive(true);
+        Time.timeScale = 0.0f;
+    }
+
+    public void HideStartScreen()
+    {
+        startScreen.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+    public void ShowInstructions()
+    {
+        instructions.SetActive(true);
+    }
+
+    public void HideInstructions()
+    {
+        instructions.SetActive(false);
+    }
+
 }

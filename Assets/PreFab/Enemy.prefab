@@ -106,6 +106,7 @@ MonoBehaviour:
   maxRandomHealth: 5
   minRandomHealth: 12
   timeToShowDamage: 1
+  transparencyDamaged: 0.65
 --- !u!212 &2879573795831324492
 SpriteRenderer:
   m_ObjectHideFlags: 0

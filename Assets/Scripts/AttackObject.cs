@@ -34,4 +34,9 @@ public class AttackObject : MonoBehaviour
         destroyTime = value;
     }
 
+    public void SetDamage(float value)
+    {
+        damage = value;
+    }
+
 }
