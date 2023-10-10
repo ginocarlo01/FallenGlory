@@ -2662,12 +2662,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b6f5fb102c8c744abe64dae0685c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reduceSpeed: 0.1
+  reduceSpeed: 0.2
   upSpeed: 0.4
   isGrowing: 0
   targetUpScale: {x: 0, y: 0, z: 0}
   maxScale: 1.57
-  minimumScale: 0.6124884
+  minimumScale: 0.5124884
   maxUpScale: {x: 0, y: 0, z: 0}
   targetDownScale: {x: 0, y: 0, z: 0}
 --- !u!114 &744955851
@@ -2683,11 +2683,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnTag: Spawn
-  spawnInterval: 3
+  spawnInterval: 2.5
   enemyPrefabs:
-  - {fileID: 4348184352950461725, guid: 8705238157fe71f4a824397497057ae4, type: 3}
   - {fileID: 2168781375992381714, guid: 924373b03a2f3d347ad2b48cb78f616c, type: 3}
-  - {fileID: 5388799181697449384, guid: 59864567275c7e444b6789a0344ca180, type: 3}
   spawnPoints:
   - {fileID: 1016461510}
   - {fileID: 2105868422}
@@ -2697,7 +2695,7 @@ MonoBehaviour:
   - {fileID: 884947642}
   - {fileID: 931800115}
   - {fileID: 362021384}
-  spawnTimerDecreaseRate: 0.008
+  spawnTimerDecreaseRate: 0.01
   minSpawnTimer: 1
   maxEnemyLifeOnSpawn: 3
   maxEnemyLife: 20

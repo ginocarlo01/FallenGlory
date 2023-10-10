@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxUpBorderScale: 0.1
-  minUpBorderScale: 0.3
+  maxUpBorderScale: 0.3
+  minUpBorderScale: 0.1
   maxRandomHealth: 5
   minRandomHealth: 1
   timeToShowDamage: 1
